@@ -2,6 +2,7 @@ class EnterChoice
     attr_reader :input
     def initialize(input, game)
         @input = input.to_i - 1
+        @game = game
         @board = game.board
         @finished = game.finished
     end
@@ -31,14 +32,17 @@ class EnterChoice
             @board[@input] = current_player(@board)
             if has_Won?
                 #@finished = true
+                #@game.over?
+                puts "YOU WON!"
                 return "YOU WON!"
             elsif full?
                 #@finished = true
-                return "IT'S A DRAW!"
+                puts "IT'S A DRAW!"
+                return "IT'S A DRAW!" 
             end
         else
-            #puts "Please make a valid selection"
-           return "Please make a valid selection"
+            puts "Please make a valid selection, 1 - 9"
+           return "Please make a valid selection, 1 - 9"
         end
     end
 

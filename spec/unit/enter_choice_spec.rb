@@ -46,7 +46,7 @@ describe EnterChoice do
 
     it "tests invalid user choice returns error message" do
         invalid_player_choice = EnterChoice.new("10", new_game) 
-        expect(invalid_player_choice.mark_square).to eq("Please make a valid selection")
+        expect(invalid_player_choice.mark_square).to eq("Please make a valid selection, 1 - 9")
     end
 
     it "tests board updates with second_player's valid choice" do
@@ -105,6 +105,6 @@ describe EnterChoice do
         puts "Please choose a square"
         cli_input = gets.chomp # Assuming you enter invalid input
         player_choice = EnterChoice.new(cli_input, new_game)
-        expect(player_choice.mark_square).to eq("Please make a valid selection")
+        expect(player_choice.mark_square).to eq("Please make a valid selection, 1 - 9")
     end
 end

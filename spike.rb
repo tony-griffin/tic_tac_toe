@@ -4,12 +4,10 @@ require "./lib/enter_choice.rb"
 new_game = Game.new()
 puts new_game.display_board(new_game.board)
 
-count = 0
-while count < 9 do
+while new_game.over? == false do
     puts "Choose a square"
     move = EnterChoice.new(gets.chomp,new_game)
     move.mark_square
-    count += 1
     puts new_game.display_board(new_game.board)
 end
 
