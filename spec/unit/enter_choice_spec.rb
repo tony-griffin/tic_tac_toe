@@ -1,15 +1,15 @@
 # UNIT TESTS
 require 'enter_choice'
-require 'create_game'
+require 'game'
 
 describe EnterChoice do
-    class Gateway
-        # def initialize(game)
-        #     @board = game.board
-        # end
+    class DatabaseGateway
+        def initialize
+            @board = nil
+        end
 
-        def save(board)
-            @board = board
+        def save(game)
+            @board = game.board
         end
 
         def view_board
@@ -17,7 +17,8 @@ describe EnterChoice do
         end
 
     end
-    game = CreateGame.new()
+
+    game = Game.new() #empty board array
 
     it "tests user can enter an integer" do
     player_choice = EnterChoice.new("3", game)
@@ -37,17 +38,30 @@ describe EnterChoice do
     end
 
     it "tests board updates with valid user choice" do
-        gateway = Gateway.new
+        #gateway = DatabaseGateway.new
         player_choice = EnterChoice.new("3", game)
         player_choice.mark_square
-        gateway.save(game.board)
-        expect(game.board).to eq(gateway.view_board)        
+        #gateway.save(game) # save this game in the database
+        expect(game.board).to eq(["","","X","","","","","",""])        
     end
 
-    it "tests invalid user choice returns false" do
-        invalid_player_choice = EnterChoice.new("10", game)
-        invalid_player_choice.mark_square
-        expect(game.board)
+    it "tests invalid user choice returns error message" do
+        invalid_player_choice = EnterChoice.new("10", game) 
+        expect(invalid_player_choice.mark_square).to eq("Please make a valid selection")
     end
+
+    it "tests board updates with second_player's valid choice" do
+        second_player_choice = EnterChoice.new("5", game)
+        second_player_choice.mark_square
+        expect(game.board).to eq(["","","X","","O","","","",""])
+    end
+
+    it "tests board updates with first_player's valid choice" do
+        first_player_choice = EnterChoice.new("4", game)
+        first_player_choice.mark_square
+        expect(game.board).to eq(["","","X","X","O","","","",""])
+    end
+
+
 
 end

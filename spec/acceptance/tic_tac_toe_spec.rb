@@ -1,9 +1,9 @@
 # ACCEPTANCE TESTS
-require 'create_game'
+require 'game'
 require 'enter_choice'
 
 describe "tic tac toe" do
-    game = CreateGame.new()
+    game = Game.new()
 
     it "tests initial board set up is correct" do 
         expect(game.board.length).to eq(9)

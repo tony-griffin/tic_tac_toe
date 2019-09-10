@@ -1,8 +1,8 @@
 # UNIT TESTS
-require 'create_game'
+require 'game'
 
-describe CreateGame do
-    game = CreateGame.new()
+describe Game do
+    game = Game.new()
 
     it "tests initial board set up is correct" do 
         expect(game.board.length).to eq(9)
