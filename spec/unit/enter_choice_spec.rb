@@ -67,6 +67,8 @@ describe EnterChoice do
         #player_choice.mark_square
         #expect(new_game.board).to eq(["X","X","X","","","","O","O",""])
         expect(player_choice.mark_square).to eq("YOU WON!")
+        #puts new_game.board, new_game.finished
+        #expect(new_game.finished).to eq(true)
     end
 
     it "tests that a game can reach a draw" do
@@ -91,7 +93,7 @@ describe EnterChoice do
         expect(new_game.board).to eq(["","","","","X","","","",""])
     end
 
-    it "tests that user can enter other valid input from CLI" do
+    xit "tests that user can enter other valid input from CLI" do
         puts "Please choose a square"
         cli_input = gets.chomp # Assuming you enter 9
         player_choice = EnterChoice.new(cli_input, new_game)

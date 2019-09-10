@@ -1,7 +1,8 @@
 class Game
-    attr_accessor :board
+    attr_accessor :board, :finished
     def initialize
         @board = [""]*9
+        @finished = false
     end
 
     def display_board(board)

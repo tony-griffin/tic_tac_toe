@@ -3,6 +3,7 @@ class EnterChoice
     def initialize(input, game)
         @input = input.to_i - 1
         @board = game.board
+        @finished = game.finished
     end
 
     WIN_COMBINATIONS = {
@@ -29,14 +30,14 @@ class EnterChoice
         if valid_input?
             @board[@input] = current_player(@board)
             if has_Won?
-                puts "YOU WON!"
+                #@finished = true
                 return "YOU WON!"
             elsif full?
-                puts "IT'S A DRAW!"
+                #@finished = true
                 return "IT'S A DRAW!"
             end
         else
-            puts "Please make a valid selection"
+            #puts "Please make a valid selection"
            return "Please make a valid selection"
         end
     end
@@ -71,5 +72,9 @@ class EnterChoice
     def full?
        turn_count(@board) == 9
     end
+
+    # def full?(board)
+    #     board.all? { |i| i == "X" || i == "O"}
+    #  end
 
 end                                                                                                                                                                                                                                                                                                                                                                             
