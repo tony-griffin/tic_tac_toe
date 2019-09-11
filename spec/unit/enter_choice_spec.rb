@@ -20,7 +20,7 @@ describe EnterChoice do
     gateway = DatabaseGateway.new
     let(:new_game) {game = Game.new()}
 
-    it "tests user can enter an integer" do
+    it "tests user can enter an integer as their choice" do
         player_choice = EnterChoice.new("3", new_game)
         expect(player_choice.input).to eq(2)
     end
@@ -49,6 +49,11 @@ describe EnterChoice do
         expect(invalid_player_choice.mark_square).to eq("Please make a valid selection, 1 - 9")
     end
 
+    it "tests the correct player is selected" do 
+        player_choice = EnterChoice.new("3", new_game)        
+        expect(player_choice.current_player).to eq("X")
+    end
+
     it "tests board updates with second_player's valid choice" do
         second_player_choice = EnterChoice.new("5", gateway.retrieve_game)
         second_player_choice.mark_square
@@ -59,22 +64,6 @@ describe EnterChoice do
         first_player_choice = EnterChoice.new("4", gateway.retrieve_game)
         first_player_choice.mark_square
         expect(gateway.retrieve_game.board).to eq(["","","X","X","O","","","",""])
-    end
-
-    it "tests that a player can win the game" do
-        new_game.board = ["X","X","","","","","O","O",""]
-        player_choice = EnterChoice.new("3", new_game)
-        #player_choice.mark_square
-        #expect(new_game.board).to eq(["X","X","X","","","","O","O",""])
-        expect(player_choice.mark_square).to eq("YOU WON!")
-        #puts new_game.board, new_game.finished
-        #expect(new_game.finished).to eq(true)
-    end
-
-    it "tests that a game can reach a draw" do
-        new_game.board = ["X","O","X","O","X","X","O","","O"]
-        player_choice = EnterChoice.new("8", new_game)
-        expect(player_choice.mark_square).to eq("IT'S A DRAW!")
     end
 
     xit "tests that user can enter valid input from CLI" do
