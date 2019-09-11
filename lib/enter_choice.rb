@@ -1,9 +1,9 @@
 class EnterChoice
     attr_reader :input
-    def initialize(input, game)
+    def initialize(input, game) #game_gateway
         @input = input.to_i - 1
-        @game = game
-        @board = game.board
+        @game = game  #game_gateway.game
+        @board = game.board  #game_gateway.game.board
     end
 
     WIN_COMBINATIONS = {
@@ -60,26 +60,5 @@ class EnterChoice
     def current_player
         turn_count % 2 == 0 ? 'X' : 'O'
     end
-
-    # def has_Won?
-    #     WIN_COMBINATIONS.each do |key, value|
-    #         marks = []
-    #         value.each do |n| # n = index + 1
-    #             marks << @board[n-1]
-    #         end
-    #         if marks.uniq.length == 1 && !marks.join.empty?
-    #             return true
-    #         end
-    #     end
-    #     false
-    # end
-
-    # def full?
-    #    turn_count(@board) == 9
-    # end
-
-    # def full?(board)
-    #     board.all? { |i| i == "X" || i == "O"}
-    #  end
 
 end                                                                                                                                                                                                                                                                                                                                                                             

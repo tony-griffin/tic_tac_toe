@@ -1,6 +1,7 @@
 class CheckGameStatus
-    def initialize(game)
-        @board = game.board
+    def initialize(game_gateway)
+        @game_gateway = game_gateway
+        @board = game_gateway.game.board
     end
 
     WIN_COMBINATIONS = {

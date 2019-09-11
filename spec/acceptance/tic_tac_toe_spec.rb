@@ -38,19 +38,22 @@ describe "tic tac toe" do
     end
 
     it "tests no one has won a new game" do
-        game_status = CheckGameStatus.new(new_game)
+        gateway.save_game(new_game)                
+        game_status = CheckGameStatus.new(gateway)
         expect(game_status.has_won?).to eq(false)
     end
 
     it "tests that a player has won the game" do 
         new_game.board = ["X","X","X","","","","O","O",""]
-        game_status = CheckGameStatus.new(new_game)
+        gateway.save_game(new_game)
+        game_status = CheckGameStatus.new(gateway)
         expect(game_status.has_won?).to eq(true)
     end
 
     it "tests that the game has been drawn" do
         new_game.board = ["X","O","X","O","X","X","O","X","O"]
-        game_status = CheckGameStatus.new(new_game)
+        gateway.save_game(new_game)        
+        game_status = CheckGameStatus.new(gateway)
         expect(game_status.draw?).to eq(true)
     end
 
