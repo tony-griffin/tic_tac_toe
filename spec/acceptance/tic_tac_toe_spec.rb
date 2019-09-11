@@ -1,6 +1,7 @@
 # ACCEPTANCE TESTS
 require 'game'
 require 'enter_choice'
+require 'display_board'
 
 describe "tic tac toe" do
 
@@ -41,5 +42,16 @@ describe "tic tac toe" do
         expect(play_game.outcome)
         .to eq("YOU WON!")
         .or eq("IT'S A DRAW!")
+    end
+
+    it "tests that board displays correctly" do
+        displayed_board = DisplayBoard.new
+        expect(displayed_board.display_board(new_game)).to eq(
+            " #{new_game.board[0]} | #{new_game.board[1]} | #{new_game.board[2]} \n" +
+            "-----------\n " +
+            " #{new_game.board[3]} | #{new_game.board[4]} | #{new_game.board[5]} \n" +
+            "-----------\n" +
+            " #{new_game.board[6]} | #{new_game.board[7]} | #{new_game.board[8]} "
+        )
     end
 end
