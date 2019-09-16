@@ -58,19 +58,10 @@ describe "tic tac toe" do
         expect(game_status.draw?).to eq(true)
     end
 
-    xit "tests that user can enter input from CLI" do
-        puts "\nPlease choose a square"
+    it "tests that user can enter input from CLI" do
         gateway.save_game(new_game)
-        cli_input = gets.chomp # Assuming you enter 2
-        player_choice = EnterChoice.new(cli_input, gateway)
-        player_choice.mark_square
-        expect(gateway.game.board).to eq(["","X","","","","","","",""])
-    end
-
-    xit "tests that user can enter input from CLI" do
-        gateway.save_game(new_game)
-        cli_input = GetCliInput.new # Assuming you enter 2
-        player_choice = EnterChoice.new(cli_input, gateway)
+        cli_input = GetCliInput.new(gateway) # Assuming you enter 2
+        player_choice = EnterChoice.new(cli_input.execute, gateway)
         player_choice.mark_square
         expect(gateway.game.board).to eq(["","X","","","","","","",""])
     end

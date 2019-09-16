@@ -51,7 +51,8 @@ describe EnterChoice do
         expect(gateway.game.board).to eq(["","","X","","","","","",""])        
     end
 
-    it "tests invalid user choice returns error message" do
+    #  TODO - look at return value
+    it "tests invalid user choice returns will not mark square" do
         gateway.save_game(new_game)
         invalid_player_choice = EnterChoice.new("10", gateway) 
         expect(invalid_player_choice.mark_square).to eq("Please make a valid selection, 1 - 9")
@@ -73,40 +74,5 @@ describe EnterChoice do
         first_player_choice = EnterChoice.new("4", gateway)
         first_player_choice.mark_square
         expect(gateway.game.board).to eq(["","","X","X","O","","","",""])
-    end
-
-    xit "tests that user can enter input from CLI" do
-        gateway.save_game(new_game)
-        puts "\nPlease choose a square"
-        cli_input = gets.chomp # Assuming you enter 2
-        player_choice = EnterChoice.new(cli_input, gateway)
-        player_choice.mark_square
-        expect(gateway.game.board).to eq(["","X","","","","","","",""])
-    end
-
-    xit "tests that user can enter other valid input from CLI" do
-        gateway.save_game(new_game)        
-        puts "Please choose a square"
-        cli_input = gets.chomp # Assuming you enter 5
-        player_choice = EnterChoice.new(cli_input, gateway)
-        player_choice.mark_square
-        expect(gateway.game.board).to eq(["","","","","X","","","",""])
-    end
-
-    xit "tests that user can enter other valid input from CLI" do
-        gateway.save_game(new_game)        
-        puts "Please choose a square"
-        cli_input = gets.chomp # Assuming you enter 9
-        player_choice = EnterChoice.new(cli_input, gateway)
-        player_choice.mark_square
-        expect(gateway.game.board).to eq(["","","","","","","","","X"])
-    end
-
-    xit "tests that user can enter invalid input from CLI" do
-        gateway.save_game(new_game)        
-        puts "Please choose a square"
-        cli_input = gets.chomp # Assuming you enter invalid input
-        player_choice = EnterChoice.new(cli_input, gateway)
-        expect(player_choice.mark_square).to eq("Please make a valid selection, 1 - 9")
-    end
+    end   
 end
