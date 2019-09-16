@@ -1,21 +1,23 @@
+# require 'game_gateway'
+
 class EnterChoice
     attr_reader :input
-    def initialize(input, game) #game_gateway
+    def initialize(input, game_gateway) #game_gateway
         @input = input.to_i - 1
-        @game = game  #game_gateway.game
-        @board = game.board  #game_gateway.game.board
+        @game = game_gateway.game
+        @board = @game.board
     end
 
-    WIN_COMBINATIONS = {
-        1 => [1,2,3],
-        2 => [4,5,6],
-        3 => [7,8,9],
-        4 => [1,4,7],
-        5 => [2,5,8],
-        6 => [3,6,9],
-        7 => [1,5,9],
-        8 => [3,5,7]
-     }
+    # WIN_COMBINATIONS = {
+    #     1 => [1,2,3],
+    #     2 => [4,5,6],
+    #     3 => [7,8,9],
+    #     4 => [1,4,7],
+    #     5 => [2,5,8],
+    #     6 => [3,6,9],
+    #     7 => [1,5,9],
+    #     8 => [3,5,7]
+    #  }
      
     # safe 
     def empty_square?
@@ -31,16 +33,7 @@ class EnterChoice
     def mark_square
         if valid_input?
             @board[@input] = current_player
-            # if has_Won?
-            #     #@finished = true
-            #     #@game.over?
-            #     puts "YOU WON!"
-            #     return "YOU WON!"
-            # elsif full?
-            #     #@finished = true
-            #     puts "IT'S A DRAW!"
-            #     return "IT'S A DRAW!" 
-            # end
+            
         else
             #puts "Please make a valid selection, 1 - 9"
            return "Please make a valid selection, 1 - 9"

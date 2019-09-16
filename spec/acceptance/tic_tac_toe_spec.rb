@@ -5,7 +5,7 @@ require 'display_board'
 require 'check_game_status'
 require 'tic_tac_toe'
 require 'in_memory_game_gateway'
-
+require 'get_cli_input'
 
 
 describe "tic tac toe" do
@@ -32,9 +32,10 @@ describe "tic tac toe" do
     end
     
     it "tests player can enter their choice" do
-        player_choice = EnterChoice.new("2", new_game)
+        gateway.save_game(new_game)
+        player_choice = EnterChoice.new("2", gateway)
         player_choice.mark_square
-        expect(new_game.board).to eq(["","X","","","","","","",""])
+        expect(gateway.game.board).to eq(["","X","","","","","","",""])
     end
 
     it "tests no one has won a new game" do
@@ -59,10 +60,19 @@ describe "tic tac toe" do
 
     xit "tests that user can enter input from CLI" do
         puts "\nPlease choose a square"
+        gateway.save_game(new_game)
         cli_input = gets.chomp # Assuming you enter 2
-        player_choice = EnterChoice.new(cli_input, new_game)
+        player_choice = EnterChoice.new(cli_input, gateway)
         player_choice.mark_square
-        expect(new_game.board).to eq(["","X","","","","","","",""])
+        expect(gateway.game.board).to eq(["","X","","","","","","",""])
+    end
+
+    xit "tests that user can enter input from CLI" do
+        gateway.save_game(new_game)
+        cli_input = GetCliInput.new # Assuming you enter 2
+        player_choice = EnterChoice.new(cli_input, gateway)
+        player_choice.mark_square
+        expect(gateway.game.board).to eq(["","X","","","","","","",""])
     end
 
     # xit "tests game can be played till outcome" do

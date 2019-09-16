@@ -1,5 +1,5 @@
 class InMemoryGameGateway
-    attr_accessor :game
+    attr_reader :game
     
     def initialize
       @game = []
@@ -9,7 +9,4 @@ class InMemoryGameGateway
       @game = game
     end
 
-    # def  retrieve_game
-    #   @game
-    # end
 end
