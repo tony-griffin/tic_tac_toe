@@ -8,7 +8,7 @@ describe DisplayBoard do
     let(:gateway) { InMemoryGameGateway.new}
 
     it "tests that board initial set up displays correctly" do
-        gateway.save_game(Game.new)        
+        gateway.save_game(new_game)        
         displayed_board = DisplayBoard.new(gateway)
         expect(displayed_board.execute({})).to eq(
             " #{new_game.board[0]} | #{new_game.board[1]} | #{new_game.board[2]} \n" +

@@ -1,5 +1,5 @@
-require 'enter_choice'
-require 'in_memory_game_gateway'
+# require "./enter_choice.rb"
+# require "./in_memory_game_gateway.rb"
 
 class GetCliInput
     def initialize(gateway)

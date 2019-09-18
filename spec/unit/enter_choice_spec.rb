@@ -4,21 +4,7 @@ require 'game'
 require 'in_memory_game_gateway'
 
 describe EnterChoice do
-    # class DatabaseGateway
-    #     def initialize
-    #         @board = nil
-    #     end
 
-    #     def save(game)
-    #         @game = game
-    #     end
-
-    #     def retrieve_game
-    #         @game
-    #     end
-    # end
-
-    
     let(:new_game) {game = Game.new()}
     let(:gateway) { InMemoryGameGateway.new}
      

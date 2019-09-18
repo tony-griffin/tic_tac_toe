@@ -7,17 +7,6 @@ class EnterChoice
         @game = game_gateway.game
         @board = @game.board
     end
-
-    # WIN_COMBINATIONS = {
-    #     1 => [1,2,3],
-    #     2 => [4,5,6],
-    #     3 => [7,8,9],
-    #     4 => [1,4,7],
-    #     5 => [2,5,8],
-    #     6 => [3,6,9],
-    #     7 => [1,5,9],
-    #     8 => [3,5,7]
-    #  }
      
     # safe 
     def empty_square?

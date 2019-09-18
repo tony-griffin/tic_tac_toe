@@ -7,7 +7,7 @@ describe GetCliInput do
     let(:gateway) { InMemoryGameGateway.new}
     let(:new_game) {game = Game.new()}
 
-    it "tests that user can enter input from CLI" do
+    xit "tests that user can enter input from CLI" do
         gateway.save_game(new_game)
         cli_input = GetCliInput.new(gateway) # Assuming you enter 2
         player_choice = EnterChoice.new(cli_input.execute, gateway)
@@ -15,7 +15,7 @@ describe GetCliInput do
         expect(gateway.game.board).to eq(["","X","","","","","","",""])
     end
 
-    it "tests that user can enter input from CLI" do
+    xit "tests that user can enter input from CLI" do
         gateway.save_game(new_game)
         cli_input = GetCliInput.new(gateway) # Assuming you enter 5
         player_choice = EnterChoice.new(cli_input.execute, gateway)
@@ -23,7 +23,7 @@ describe GetCliInput do
         expect(gateway.game.board).to eq(["","","","","X","","","",""])
     end
 
-    it "tests that user can enter input from CLI" do
+  xit "tests that user can enter input from CLI" do
         gateway.save_game(new_game)
         cli_input = GetCliInput.new(gateway) # Assuming you enter 9
         player_choice = EnterChoice.new(cli_input.execute, gateway)
@@ -31,7 +31,7 @@ describe GetCliInput do
         expect(gateway.game.board).to eq(["","","","","","","","","X"])
     end
 
-    it "tests that user cannot enter invalid input from CLI" do
+    xit "tests that user cannot enter invalid input from CLI" do
         gateway.save_game(new_game)        
         cli_input = GetCliInput.new(gateway) # Assuming you enter invalid input
         player_choice = EnterChoice.new(cli_input.execute, gateway)
