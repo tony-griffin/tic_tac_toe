@@ -10,7 +10,8 @@ class EnterChoice
      
     # safe 
     def empty_square?
-     @board[@input] == "" || @board[@input] == " " ||  @board[@input] == nil   
+        @board[@input].class == Integer
+     #@board[@input] == "" || @board[@input] == " " ||  @board[@input] == nil   
     end
 
     # safe     

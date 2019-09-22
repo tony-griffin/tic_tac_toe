@@ -33,7 +33,7 @@ class Minimax
     end
 
     def get_available_squares(board)
-        board.each_index.select { |i| board[i] == ''}
+        board.each_index.select { |i| board[i].class == Integer }
     end
 
     def mark_square(square, gateway)
