@@ -6,11 +6,12 @@ require './enter_choice'
 
 # gateway = InMemoryGameGateway.new
 # game = Game.new
-# # game.board = ['X','','','O','','','O','X','X']
-# #  game.board = ['O','','X','X','','','X','O','O']
-#  game.board = ['X','','','','','','','','']
+# # game.board = ['X',2,3,'O',5,6,'O','X','X']
+# game.board = ['O',2,'X','X',4,5,'X','O','O']
+# #  game.board = ['X','','','','','','','','']
 
 # gateway.save_game(game)
+# scores = {}   
 
 class Minimax
     def initialize(gateway)
@@ -21,8 +22,12 @@ class Minimax
 
     def run
         scores = max(@actual_board, 0, {}, '')
+
+        # For the first move, where calculating the whole tree isn't necessary
         if beginning_of_game?
             empty_squares = get_available_squares(@actual_board)
+
+            # Bit magic numbery but default to middle square (I think that's the best way to win in TTT)
             if empty_squares.any?(4)
                 return 4
             end
@@ -49,26 +54,27 @@ class Minimax
     def clear_board(game,clean_board)
         game.board = clean_board.dup
     end
-    #TODO
-    def create_fake_game
-    end
 
     def beginning_of_game?
         check = CheckGameStatus.new(@actual_gateway)
-        check.turn_count < 3
+        check.turn_count < 1
     end
 
     def max(board, depth, scores, key)
         depth += 1
+
+        # Setting up a fake gateway and game
         hyp_gateway = InMemoryGameGateway.new
         hyp_game = Game.new
         hyp_game.board = board.dup
-        starting_board = board.dup
+        starting_board = board.dup # A copy of the starting board to be used to reset 
         hyp_gateway.save_game(hyp_game)
+        
         empty_squares = get_available_squares(hyp_game.board)
         if scores[depth] == nil
             scores[depth] = {}
         end
+
         empty_squares.each do |square|
             starting_key = key.dup
             mark_square(square, hyp_gateway)
@@ -96,20 +102,8 @@ class Minimax
             end
         end
         arr = (1..scores.length).to_a.reverse
-        arr.each do |i|
-            # Bottom layer
-            if i == arr[0]
-                scores[i].each do |key,value|
-                    daddy_key = key[0...-1]
-                    if (i % 2 ==0)
-                        value -= i
-                    else
-                       value += i 
-                    end
-                    scores[i-1][daddy_key] -= value
-                end
-                scores.delete(i)
-            elsif (i % 2 == 0) 
+        arr.each do |i|            
+            if (i % 2 == 0) 
                 #MIN
                 hash = {}
                 scores[i].each do |key, value|
@@ -158,4 +152,5 @@ class Minimax
 end
 
 # minimax = Minimax.new(gateway)
+
 # pp minimax.run
