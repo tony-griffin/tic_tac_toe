@@ -51,8 +51,8 @@ class CheckGameStatus
             counter
     end
 
-    # def current_player
-    #     turn_count % 2 == 0 ? 'X' : 'O'
-    # end
+    def last_player_ai?
+        turn_count % 2 == 0
+    end
 
 end
