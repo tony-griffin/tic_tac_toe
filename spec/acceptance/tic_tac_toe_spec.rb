@@ -65,13 +65,11 @@ describe "tic tac toe" do
         player_choice.mark_square
         expect(gateway.game.board).to eq(["","X","","","","","","",""])
     end
-
-    # xit "tests game can be played till outcome" do
+    # TODO - ask Craig
+    # it "tests that AI can calculate a move" do
     #     expect(play_game.outcome)
     #     .to eq("YOU WON!")
     #     .or eq("IT'S A DRAW!")
     # end
-
-   
     
 end
