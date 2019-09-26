@@ -13,10 +13,15 @@ class Minimax
 
   def self.score_of(children, maximising = false)
     return 0 if children.empty?
-
-    child_score = children.map do |child|
-      score_of(child[:children], !maximising)
-    end.sum
+    if maximising
+      child_score = children.map do |child|
+        score_of(child[:children], !maximising)
+      end.max
+    else
+      child_score = children.map do |child|
+        score_of(child[:children], !maximising)
+      end.min
+    end
 
    child_score + min_or_max(children, maximising)[:score] - 1
   end

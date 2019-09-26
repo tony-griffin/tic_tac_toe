@@ -8,7 +8,7 @@ require "./minimax_too.rb"
 
 gateway = InMemoryGameGateway.new
 game = Game.new
- game.board = ['O','','X','','X','','','','']
+#  game.board = ['O','','X','','X','','','','']
 # game.board = ['X','','O','O','','X','X','','']
 gateway.save_game(game)
 display_board = DisplayBoard.new(gateway) 
@@ -52,32 +52,32 @@ class MakeTree
 
 end
 
-tree = MakeTree.make_tree_from_board(gateway)
-# pp tree
+# tree = MakeTree.make_tree_from_board(gateway)
+# # pp tree
 
-pp Minimax.best_move(tree)
+# pp Minimax.best_move(tree)
 # pp tree.map { |n| {position: n[:position], score: n[:score]} }
 
-# def get_ai_choice(gateway)
-#     tree = MakeTree.make_tree_from_board(gateway)
-#     Minimax.best_move(tree)
-# end
+def get_ai_choice(gateway)
+    tree = MakeTree.make_tree_from_board(gateway)
+    Minimax.best_move(tree)
+end
 
-# while check_status.over? == false do
-#     cli_input = GetCliInput.new(gateway)
-#     player_choice = EnterChoice.new(cli_input.execute, gateway)
-#     player_choice.mark_square
-#     ai_input = get_ai_choice(gateway)
-#     ai_choice = EnterChoice.new(ai_input + 1, gateway)
-#     ai_choice.mark_square
-#     display_board = DisplayBoard.new(gateway) 
-#     puts display_board.execute({})
-# end
+while check_status.over? == false do
+    cli_input = GetCliInput.new(gateway)
+    player_choice = EnterChoice.new(cli_input.execute, gateway)
+    player_choice.mark_square
+    ai_input = get_ai_choice(gateway)
+    ai_choice = EnterChoice.new(ai_input + 1, gateway)
+    ai_choice.mark_square
+    display_board = DisplayBoard.new(gateway) 
+    puts display_board.execute({})
+end
 
-# if check_status.has_won? && check_status.last_player_ai?
-#     puts "YOU LOST!"
-# elsif check_status.has_won? && !check_status.last_player_ai?
-#     puts "YOU WON!"
-# elsif check_status.draw?
-#     puts "IT'S A DRAW!"
-# end
+if check_status.has_won? && check_status.last_player_ai?
+    puts "YOU LOST!"
+elsif check_status.has_won? && !check_status.last_player_ai?
+    puts "YOU WON!"
+elsif check_status.draw?
+    puts "IT'S A DRAW!"
+end
